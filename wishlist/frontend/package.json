@@ -11,10 +11,20 @@
     "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc"
   },
   "dependencies": {
+    "@fullcalendar/core": "^6.1.15",
+    "@fullcalendar/daygrid": "^6.1.15",
+    "@fullcalendar/interaction": "^6.1.15",
+    "@fullcalendar/react": "^6.1.15",
+    "@fullcalendar/timegrid": "^6.1.15",
     "@headlessui/react": "^1.7.18",
-    "next": "14.1.4",
+    "antd": "^5.22.5",
+    "axios": "^1.7.9",
+    "dayjs": "^1.11.13",
+    "fp-ts": "^2.16.9",
+    "next": "^14.2.20",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "ts-pattern": "^5.6.0"
   },
   "devDependencies": {
     "@types/node": "^20",
