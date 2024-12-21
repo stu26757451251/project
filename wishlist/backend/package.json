@@ -7,16 +7,25 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc -p tsconfig.json",
     "start": "node ./dist/index.js",
-    "dev": "concurrently -k \"tsc -p ./example/server.ts -w\" \"nodemon ./dist/index.js\""
+    "dev": "concurrently \"tsc -p tsconfig.json -w\" \"nodemon ./dist/index.js\""
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "fastify": "^4.26.2"
+    "effect": "^3.11.7",
+    "fastify": "^4.26.2",
+    "fp-ts": "^2.16.9"
   },
   "devDependencies": {
+    "@eslint/js": "^9.16.0",
     "@types/node": "^20.11.30",
-    "typescript": "^5.4.3"
+    "concurrently": "^9.1.0",
+    "eslint": "^9.16.0",
+    "eslint-plugin-react": "^7.37.2",
+    "globals": "^15.13.0",
+    "nodemon": "^3.1.9",
+    "typescript": "^5.4.3",
+    "typescript-eslint": "^8.18.0"
   }
 }
