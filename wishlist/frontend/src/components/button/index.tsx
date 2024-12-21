@@ -1,7 +1,5 @@
-'use client'
-
-import { ICON } from '@/enum/icon'
 import Icon from '@/components/icon'
+import { ICON } from '@/enum/icon'
 
 interface ButtonProps {
   dataTestId: string
@@ -20,7 +18,7 @@ export default function Button({
 }: Readonly<ButtonProps>) {
   return (
     <button key={dataTestId} className={className} onClick={onClick}>
-      {icon && <Icon classname="" sizeClassName={'w-8 h-8'} src={`/${icon}.svg`} alt={''} />}
+      {icon && <Icon sizeClassName={'w-8 h-8'} src={`/${icon}.svg`} alt={''} />}
       {name && name}
     </button>
   )

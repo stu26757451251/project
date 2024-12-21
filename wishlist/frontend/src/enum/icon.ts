@@ -1,3 +1,3 @@
 export enum ICON {
-    ARROW_RIGHT = 'arrowRight'
+  ARROW_RIGHT = 'arrowRight'
 }
