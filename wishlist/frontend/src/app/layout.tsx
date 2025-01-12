@@ -1,7 +1,7 @@
 import HeaderBar from '@/components/header-bar'
 import { Metadata } from 'next'
 import './globals.css'
-import Content from '@/components/left-panel'
+import Content from '@/components/content'
 import { ReactNode } from 'react'
 
 export const metadata: Metadata = {
