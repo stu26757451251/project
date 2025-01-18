@@ -15,7 +15,7 @@ export default function TaskCard({ task, dataTestId }: TaskCardProps) {
     task.emergency !== undefined || task.important !== undefined || task.frequency !== undefined
 
   return (
-    <div className="grid border rounded-xl px-4 gap-y-2 py-3" data-testid={dataTestId}>
+    <div className="grid border rounded-xl px-4 gap-y-2 py-3 my-2" data-testid={dataTestId}>
       <span className="block font-bold text-base">{name}</span>
       {dueDate && <span className="block font-light text-sm">Due Date: {formatDate(dueDate)}</span>}
       {priority && <span className="block font-light text-sm">Priority: {priority}</span>}

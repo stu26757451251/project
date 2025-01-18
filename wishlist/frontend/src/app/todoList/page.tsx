@@ -1,81 +1,87 @@
-import axios, { AxiosError } from 'axios'
 import React from 'react'
-import * as TE from 'fp-ts/TaskEither'
 import { pipe } from 'fp-ts/function'
+import { getTasks } from '@/services/task'
+import * as TE from 'fp-ts/TaskEither'
+import { STATUS } from '@/types/tasks/task'
+import CategoryColumn from '@/components/tasks/category-column'
+import { COLOR } from '@/enum/color'
 
-enum CATEGORY {
-  READING = 'reading',
-  EXERCISE = 'exercise',
-  CHORE = 'chore'
+/*
+  1. 
+  User can category by themselves, 
+  the value of key seems to be a list of string,
+  so that it will be grouped by all the keys in list
+
+  2.
+  User can define the color of tags by themselves
+
+*/
+
+function groupByEnum<T, K extends keyof T>(
+  list: T[],
+  enumObject: Record<string, string>,
+  key: K
+): Record<string, T[]> {
+  // 初始化結果物件，確保所有 enum 值都有空陣列
+  const grouped: Record<string, T[]> = {}
+  for (const enumKey in enumObject) {
+    if (Object.prototype.hasOwnProperty.call(enumObject, enumKey)) {
+      grouped[enumObject[enumKey]] = []
+    }
+  }
+
+  // 分組任務
+  for (const item of list) {
+    const groupKey = item[key] as unknown as string
+    if (grouped[groupKey]) {
+      grouped[groupKey].push(item)
+    }
+  }
+
+  return grouped
 }
-
-type Todo = {
-  name: string
-  description: string
-  category: CATEGORY
-}
-
-type GetTodoResponse = {
-  todos: Array<Todo>
-}
-
-type GetTodoError = {
-  _tag: string
-  message: string
-}
-
-const errorResponseOf = (error: AxiosError) => {
-  console.log(error)
-  return getTodoErrorOf(error.message)
-}
-
-const getTodoErrorOf = (message: string): GetTodoError => ({
-  _tag: 'GetTodoError',
-  message
-})
-
-axios.defaults.baseURL = 'http://localhost:3000'
 
 export default async function TodoList() {
-  const getTodos: TE.TaskEither<GetTodoError, GetTodoResponse> = TE.tryCatch(
-    // validate the resposne matching
-    () => axios.get<GetTodoResponse>(`/todos`).then((response) => response.data),
-    (error) => errorResponseOf(error as AxiosError)
-  )
-
   const todoList = await pipe(
-    getTodos,
+    getTasks,
     TE.match(
       (error) => {
-        console.error('Error occur when GetTodoList :', error)
+        console.error('Error occur when GET /tasks :', error)
         return []
       },
-      ({ todos }) => todos
+      ({ tasks }) => tasks
     )
   )()
 
+  const totalNumber = todoList.length
+  const tasksGroupByStatus = groupByEnum(todoList, STATUS, 'status')
+
   return (
-    <div className="h-full flex justify-center items-center">
-      <div
-        data-testid="todo-list"
-        className="flex flex-col p-5 border border-sold m-5 min-w-[300px] min-h-[400px]">
-        <div className="font-semibold text-lg pb-8">
-          <span>Todo List</span>
-        </div>
-        {todoList.map((task, index) => (
-          <div key={`task-${index}`} data-testid="task" className="select-none">
-            <input type="checkbox" id={task.name} name={task.name} className="m-2" />
-            <label htmlFor={task.name}>{task.name}</label>
-          </div>
-        ))}
-      </div>
-      <div
-        data-testid="done-list"
-        className="flex flex-col p-5 border border-solid m-5 min-w-[300px] min-h-[400px]">
-        <div className="font-semibold text-lg pb-8">
-          <span>Done List</span>
-        </div>
-      </div>
+    <div className="h-full flex">
+      <CategoryColumn
+        title={STATUS.TODO}
+        color={COLOR.CURIOUS_BLUE}
+        tasks={tasksGroupByStatus[STATUS.TODO]}
+        totalNumber={totalNumber}
+      />
+      <CategoryColumn
+        title={STATUS.IN_PROGRESS}
+        color={COLOR.OASIS}
+        tasks={tasksGroupByStatus[STATUS.IN_PROGRESS]}
+        totalNumber={totalNumber}
+      />
+      <CategoryColumn
+        title={STATUS.WAITING}
+        color={COLOR.GRAY}
+        tasks={tasksGroupByStatus[STATUS.WAITING]}
+        totalNumber={totalNumber}
+      />
+      <CategoryColumn
+        title={STATUS.DONE}
+        color={COLOR.GREEN}
+        tasks={tasksGroupByStatus[STATUS.DONE]}
+        totalNumber={totalNumber}
+      />
     </div>
   )
 }
