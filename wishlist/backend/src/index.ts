@@ -1,47 +1,39 @@
 import Fastify, { FastifyInstance, RouteShorthandOptions } from "fastify"
-import { CATEGORY, Todo } from "./types/todo"
+import {
+	EMERGENCY,
+	FREQUENCY,
+	IMPORTANT,
+	STATUS,
+	Task,
+} from "./types/tasks/task"
 
 const server: FastifyInstance = Fastify({})
 
-const opts: RouteShorthandOptions = {
-	schema: {
-		response: {
-			200: {
-				type: "object",
-				properties: {
-					pong: {
-						type: "string",
-					},
-				},
-			},
-		},
-	},
-}
-
-const todoList: Array<Todo> = [
+const taskList: Array<Task> = [
 	{
-		name: "Do the dishes",
+		name: "🪄 Do the dishes",
 		description: "Clean the plates hold the pizza yesterday",
-		category: CATEGORY.CHORE,
+		status: STATUS.TODO,
+		dueDate: new Date("2025-05-07"),
+		priority: 2,
+		emergency: EMERGENCY.EMERGENCY,
+		important: IMPORTANT.IMPORTANT,
 	},
 	{
 		name: "Go to the gym",
 		description: "For everyday life",
-		category: CATEGORY.EXERCISE,
+		status: STATUS.DONE,
+		frequency: FREQUENCY.DAILY,
 	},
 	{
 		name: "Leetcode",
 		description: "Read Graph Algortihm, BFS or DFS",
-		category: CATEGORY.READING,
+		status: STATUS.IN_PROGRESS,
 	},
 ]
 
-server.get("/ping", opts, async (request, reply) => {
-	return { pong: "pong!" }
-})
-
-server.get("/todos", async (request, reply) => {
-	return { todos: todoList }
+server.get("/tasks", async (request, reply) => {
+	return { tasks: taskList }
 })
 
 const start = async () => {

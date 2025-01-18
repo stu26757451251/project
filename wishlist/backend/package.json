@@ -15,7 +15,8 @@
   "dependencies": {
     "effect": "^3.11.7",
     "fastify": "^4.26.2",
-    "fp-ts": "^2.16.9"
+    "fp-ts": "^2.16.9",
+    "zod": "^3.24.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.16.0",
