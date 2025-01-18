@@ -1,21 +1,14 @@
-import { AppError, errorShow, networkErrorOf, unexpectedErrorOf } from '@/types/errors/NetworkError'
-import { Task } from '@/types/task'
-import axios from 'axios'
+import { GetTaskError, GetTaskErrorSchema, handleAxiosError } from '@/types/api-error'
+import { Task } from '@/types/tasks/task'
+import axios, { AxiosError } from 'axios'
+import * as TE from 'fp-ts/TaskEither'
 
-export const getTaskList: () => Promise<AppError | Array<Task>> = async () => {
-  try {
-    const tasks = await axios.get<Array<Task>>('/api/tasks').then((response) => response.data)
-    return tasks
-  } catch (error) {
-    // the error could be Axios Error or Unexpected Error
-    if (axios.isAxiosError(error) && error.response) {
-      const networkError = networkErrorOf('Get task list')(error.status)(error.message)
-      console.error(errorShow(networkError))
-      return networkError
-    } else {
-      const unexpectedError = unexpectedErrorOf('Get task list')
-      console.error(errorShow(unexpectedError))
-      return unexpectedError
-    }
-  }
+type GetTasksResponse = {
+  tasks: Array<Task>
 }
+
+export const getTasks: TE.TaskEither<GetTaskError, GetTasksResponse> = TE.tryCatch(
+  // validate the response matching
+  () => axios.get<GetTasksResponse>(`/tasks`).then((response) => response.data),
+  (error) => handleAxiosError<GetTaskError>(GetTaskErrorSchema)(error as AxiosError)
+)
