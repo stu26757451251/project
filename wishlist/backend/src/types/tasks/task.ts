@@ -1,25 +1,25 @@
 import { z } from "zod"
 
 export enum STATUS {
-	TODO = "todo",
-	IN_PROGRESS = "in_progress",
-	WAITING = "waiting",
-	DONE = "done",
+	TODO = "TODO",
+	IN_PROGRESS = "IN PROGRESS",
+	WAITING = "WAITING",
+	DONE = "DONE",
 }
 
 export enum EMERGENCY {
 	EMERGENCY = "EMERGENCY",
-	NOT_EMERGENCY = "NOT_EMERGENCY",
+	NOT_EMERGENCY = "NOT EMERGENCY",
 }
 
 export enum IMPORTANT {
 	IMPORTANT = "IMPORTANT",
-	NOT_IMPORTANT = "NOT_IMPORTANT",
+	NOT_IMPORTANT = "NOT IMPORTANT",
 }
 
 export enum FREQUENCY {
-	DAILY = "DAILY",
-	WEEKLY = "WEEKLY",
+	DAILY = "daily",
+	WEEKLY = "weekly",
 }
 
 const Name = z.string()
@@ -58,14 +58,3 @@ const Task = z.object({
 })
 
 export type Task = z.infer<typeof Task>
-
-/*
-
-const Status = {
-  OPEN:'OPEN',
-  CLOSED: 'CLOSED'
-} as const
-
-type Status = typeof Status[keyof typeof Status]
-
-*/

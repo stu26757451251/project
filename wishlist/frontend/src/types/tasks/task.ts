@@ -1,20 +1,20 @@
 import { z } from 'zod'
 
 export enum STATUS {
-  TODO = 'todo',
-  IN_PROGRESS = 'in_progress',
-  WAITING = 'waiting',
-  DONE = 'done'
+  TODO = 'TODO',
+  IN_PROGRESS = 'IN PROGRESS',
+  WAITING = 'WAITING',
+  DONE = 'DONE'
 }
 
 enum EMERGENCY {
   EMERGENCY = 'EMERGENCY',
-  NOT_EMERGENCY = 'NOT_EMERGENCY'
+  NOT_EMERGENCY = 'NOT EMERGENCY'
 }
 
 enum IMPORTANT {
   IMPORTANT = 'IMPORTANT',
-  NOT_IMPORTANT = 'NOT_IMPORTANT'
+  NOT_IMPORTANT = 'NOT IMPORTANT'
 }
 
 enum FREQUENCY {
