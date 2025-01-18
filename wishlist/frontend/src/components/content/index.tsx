@@ -20,7 +20,7 @@ export default function Content({ children }: { children: ReactNode }) {
       </div>
       <div
         data-testid="main-content"
-        className={`absolute left-[50px] shrink h-full duration-500 ease-out transition-all ${panelVisible ? 'translate-x-[150px] w-[calc(100%-200px)]' : 'w-[calc(100%-50px)]'}`}>
+        className={`overflow-x-auto absolute left-[50px] shrink h-full duration-500 ease-out transition-all ${panelVisible ? 'translate-x-[150px] w-[calc(100%-200px)]' : 'w-[calc(100%-50px)]'}`}>
         {children}
       </div>
     </div>

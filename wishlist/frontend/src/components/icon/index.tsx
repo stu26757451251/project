@@ -1,13 +1,19 @@
+import { ICON } from '@/enum/icon'
 import Image from 'next/image'
 interface IconProps {
   classname?: string
   sizeClassName: string
-  src: string
-  alt: string
+  type: ICON
 }
 
-export default function Icon({ classname, sizeClassName, src, alt }: IconProps) {
+export default function Icon({ classname, sizeClassName, type }: IconProps) {
   return (
-    <Image className={`${classname} ${sizeClassName}`} src={src} alt={alt} width={0} height={0} />
+    <Image
+      className={`${classname} ${sizeClassName}`}
+      src={`/icon/${type}.svg`}
+      alt={type}
+      width={0}
+      height={0}
+    />
   )
 }

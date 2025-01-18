@@ -18,7 +18,7 @@ export default function Button({
 }: Readonly<ButtonProps>) {
   return (
     <button key={dataTestId} className={className} onClick={onClick}>
-      {icon && <Icon sizeClassName={'w-8 h-8'} src={`/${icon}.svg`} alt={''} />}
+      {icon && <Icon sizeClassName={'w-8 h-8'} type={ICON.ARROW_RIGHT} />}
       {name && name}
     </button>
   )
