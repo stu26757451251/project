@@ -9,9 +9,17 @@
 }
 
 body {
-  @apply text-slate-600 font-mono;
+  @apply text-slate-600;
 }
 
 div {
   @apply select-none;
+}
+
+.dot {
+  align-self: center;
+  border-radius: 9999px;
+  height: 12px;
+  width: 12px;
+  margin-right: 8px;
 }
