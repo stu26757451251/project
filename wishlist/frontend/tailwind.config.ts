@@ -13,7 +13,6 @@ const config: Config = {
         'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))'
       },
       gridTemplateRows: {
-        // Simple 20 row grid
         '19': 'repeat(19, minmax(0, 1fr))',
         '20': 'repeat(20, minmax(0, 1fr))',
         '21': 'repeat(21, minmax(0, 1fr))'
@@ -31,6 +30,19 @@ const config: Config = {
         'span-21': 'span 21 / span 21'
       },
       colors: {
+        oasis: {
+          '50': '#fff9eb',
+          '100': '#fdecc8',
+          '200': '#fbd88c',
+          '300': '#f9bd50',
+          '400': '#f7a428',
+          '500': '#f1820f',
+          '600': '#d55e0a',
+          '700': '#b13f0c',
+          '800': '#903210',
+          '900': '#762a11',
+          '950': '#441204'
+        },
         'curious-blue': {
           '50': '#f4f7fb',
           '100': '#e8eff6',
