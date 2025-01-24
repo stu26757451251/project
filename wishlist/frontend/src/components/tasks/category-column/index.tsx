@@ -1,4 +1,4 @@
-import DotTag from '@/components/dot-tag'
+import DotTag from '@/components/tag/dot-tag'
 import { Task } from '@/types/tasks/task'
 import TaskCard from '../task-card'
 import { COLOR } from '@/enum/color'
@@ -16,7 +16,7 @@ export default function CategoryColumn({ title, color, tasks, totalNumber }: Cat
       data-testid={`${title}-list`}
       className="flex flex-col p-5 m-5 min-w-[300px] min-h-[400px]">
       <div className="font-semibold text-base pb-2 flex justify-between">
-        <DotTag tailwindColor={color} text={title} dataTestId={`${title}-title`} />
+        <DotTag color={color} text={title} />
         <span data-testid={`${title}-count`} className="font-medium text-gray-400">
           {tasks.length}/{totalNumber}
         </span>
