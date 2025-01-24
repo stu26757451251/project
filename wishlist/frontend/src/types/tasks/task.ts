@@ -7,19 +7,19 @@ export enum STATUS {
   DONE = 'DONE'
 }
 
-enum EMERGENCY {
+export enum EMERGENCY {
   EMERGENCY = 'EMERGENCY',
   NOT_EMERGENCY = 'NOT EMERGENCY'
 }
 
-enum IMPORTANT {
+export enum IMPORTANT {
   IMPORTANT = 'IMPORTANT',
   NOT_IMPORTANT = 'NOT IMPORTANT'
 }
 
-enum FREQUENCY {
-  DAILY = 'daily',
-  WEEKLY = 'weekly'
+export enum FREQUENCY {
+  DAILY = 'Daily',
+  WEEKLY = 'Weekly'
 }
 
 const Name = z.string()

@@ -1,4 +1,4 @@
-import Fastify, { FastifyInstance, RouteShorthandOptions } from "fastify"
+import Fastify, { FastifyInstance } from "fastify"
 import {
 	EMERGENCY,
 	FREQUENCY,
@@ -30,18 +30,39 @@ const taskList: Array<Task> = [
 		description: "Read Graph Algortihm, BFS or DFS",
 		status: STATUS.IN_PROGRESS,
 	},
+	{
+		name: "Practice English Reading",
+		description:
+			"For Singapore trip, I should practice reading and speaking ability.",
+		priority: 3,
+		status: STATUS.TODO,
+		frequency: FREQUENCY.WEEKLY,
+		important: IMPORTANT.IMPORTANT,
+	},
+	{
+		name: "Receive The Mail From Mom",
+		description:
+			"Last month back home, mom said that she will send the fruit to department",
+		status: STATUS.WAITING,
+		emergency: EMERGENCY.NOT_EMERGENCY,
+		important: IMPORTANT.IMPORTANT,
+	},
+	{
+		name: "Travel to Clark",
+		description: "Go to Clark with my friends in 2025",
+		dueDate: new Date("2025-12-31"),
+		status: STATUS.TODO,
+		important: IMPORTANT.IMPORTANT,
+	},
 ]
 
-server.get("/tasks", async (request, reply) => {
+server.get("/tasks", async () => {
 	return { tasks: taskList }
 })
 
 const start = async () => {
 	try {
 		await server.listen({ port: 3000 })
-
-		const address = server.server.address()
-		const port = typeof address === "string" ? address : address?.port
 	} catch (err) {
 		server.log.error(err)
 		process.exit(1)

@@ -18,8 +18,8 @@ export enum IMPORTANT {
 }
 
 export enum FREQUENCY {
-	DAILY = "daily",
-	WEEKLY = "weekly",
+	DAILY = "Daily",
+	WEEKLY = "Weekly",
 }
 
 const Name = z.string()
