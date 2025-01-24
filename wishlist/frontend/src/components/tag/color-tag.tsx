@@ -35,7 +35,11 @@ const colorToStyle = (
     }))
     .with(COLOR.SLATE, () => ({
       backgroundColor: 'bg-slate-200',
-      textColor: 'text-skate-900'
+      textColor: 'text-slate-900'
+    }))
+    .with(COLOR.CINNABAR, () => ({
+      backgroundColor: 'bg-cinnabar-200',
+      textColor: 'text-cinnabar-900'
     }))
     .exhaustive()
 

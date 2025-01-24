@@ -41,6 +41,10 @@ const colorToStyle = (
       backgroundColor: 'bg-slate-200',
       textColor: 'text-slate-900'
     }))
+    .with(COLOR.CINNABAR, () => ({
+      backgroundColor: 'bg-cinnabar-200',
+      textColor: 'text-cinnabar-900'
+    }))
     .exhaustive()
 
 export default function IconTag({ icon, color, text }: IconTagProps) {

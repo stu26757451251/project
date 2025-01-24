@@ -44,6 +44,11 @@ const colorToStyle = (
       dotColor: 'bg-slate-700',
       textColor: 'text-slate-900'
     }))
+    .with(COLOR.CINNABAR, () => ({
+      backgroundColor: 'bg-cinnabar-200',
+      dotColor: 'bg-cinnabar-700',
+      textColor: 'text-cinnabar-900'
+    }))
     .exhaustive()
 
 export default function DotTag({ color, text }: DotTagProps) {

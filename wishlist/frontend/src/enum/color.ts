@@ -1,8 +1,9 @@
 export enum COLOR {
   CURIOUS_BLUE = 'curious-blue',
-  OASIS = 'oasis',
+  CINNABAR = 'cinnabar',
   GRAY = 'gray',
   GREEN = 'green',
+  OASIS = 'oasis',
   RED = 'red',
   SLATE = 'slate'
 }
