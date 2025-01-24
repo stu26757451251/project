@@ -1,19 +1,18 @@
 import { ICON } from '@/enum/icon'
 import Image from 'next/image'
+import { FaClock } from 'react-icons/fa6'
+import * as TSP from 'ts-pattern'
+
 interface IconProps {
   classname?: string
-  sizeClassName: string
-  type: ICON
+  icon: ICON
 }
 
-export default function Icon({ classname, sizeClassName, type }: IconProps) {
-  return (
-    <Image
-      className={`${classname} ${sizeClassName}`}
-      src={`/icon/${type}.svg`}
-      alt={type}
-      width={0}
-      height={0}
-    />
-  )
+export default function Icon({ classname, icon }: IconProps) {
+  return TSP.match(icon)
+    .with(ICON.ARROW_RIGHT, () => (
+      <Image className={`${classname}`} src={`/icon/${icon}.svg`} alt={icon} width={0} height={0} />
+    ))
+    .with(ICON.CLOCK, () => <FaClock size="14" className="mr-1 flex-shrink-0" />)
+    .exhaustive()
 }
