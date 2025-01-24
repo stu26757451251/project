@@ -3,7 +3,7 @@ import Button from '@/components/button'
 import { useAtom } from 'jotai'
 import { leftPanelVisibleAtom } from '@/atoms/atoms'
 
-export default function LeftPanel({}) {
+export default function LeftPanel() {
   const [panelVisible, setPanelVisible] = useAtom(leftPanelVisibleAtom)
   const switchPanelVisible = () => setPanelVisible(!panelVisible)
 
