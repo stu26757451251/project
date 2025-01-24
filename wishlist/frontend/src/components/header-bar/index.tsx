@@ -1,7 +1,9 @@
-import Icon from '@/components/icon'
 import Image from 'next/image'
+import { connection } from 'next/server'
 
-export default function HeaderBar() {
+export default async function HeaderBar() {
+  await connection()
+  const color = process.env.A_COLOR
   return (
     <div
       data-testid="header-bar"
@@ -16,6 +18,7 @@ export default function HeaderBar() {
         />
         <span className="pl-4">Wishlist</span>
       </div>
+      <div>Process environment : {color}</div>
       <div data-testid="header-bar-username" className="pr-7 text-xl">
         <span className="pr-4">Lilypop</span>
         <Image
