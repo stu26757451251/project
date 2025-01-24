@@ -5,8 +5,13 @@ import { ICON } from '@/enum/icon'
 import { pipe } from 'fp-ts/lib/function'
 import { useAtom } from 'jotai'
 import * as O from 'fp-ts/Option'
-import TaskLabel, { FIELD_TYPE } from '../task-label'
-import { emergencyColorMap, importantColorMap } from '@/utils/color-map'
+import TaskField, { FIELD_TYPE } from '../task-field'
+import {
+  emergencyColorMap,
+  frequencyColorMap,
+  frequencyIconMap,
+  importantColorMap
+} from '@/utils/color-map'
 
 export function TaskPanel() {
   const [currentTask, setCurrentTask] = useAtom(currentTaskAtom)
@@ -28,28 +33,32 @@ export function TaskPanel() {
             icon={ICON.ARROW_RIGHT}></Button>
           <div
             data-testid="task-content"
-            className="grid content-start col-start-2 col-span-5 mt-20 gap-y-2">
-            <div className="font-bold text-3xl pb-4">{name}</div>
-            {priority && <TaskLabel title="Priority" type={FIELD_TYPE.NUMBER} value={priority} />}
-            {dueDate && <TaskLabel title="Due Date" type={FIELD_TYPE.DATE} value={dueDate} />}
-            {emergency && (
-              <TaskLabel
-                title="Emergency"
-                type={FIELD_TYPE.COLOR_TAG}
-                color={emergencyColorMap[emergency]}
-                value={emergency}
-              />
-            )}
-            {important && (
-              <TaskLabel
-                title="Important"
-                type={FIELD_TYPE.COLOR_TAG}
-                color={importantColorMap[important]}
-                value={important}
-              />
-            )}
-            {/* {frequency && <TaskLabel title="Frequency" type={} value={frequency} />} */}
-            <TaskLabel title="Description" type={FIELD_TYPE.STRING} value={description} />
+            className="grid content-start col-start-2 col-span-5 mt-20 gap-y-3">
+            <div data-testid="task-title" className="font-bold text-3xl pb-10 min-h-[120px]">
+              {name}
+            </div>
+            <TaskField title="Priority" type={FIELD_TYPE.NUMBER} value={priority} />
+            <TaskField title="Due Date" type={FIELD_TYPE.DATE} value={dueDate} />
+            <TaskField
+              title="Emergency"
+              type={FIELD_TYPE.COLOR_TAG}
+              color={emergencyColorMap}
+              value={emergency}
+            />
+            <TaskField
+              title="Important"
+              type={FIELD_TYPE.COLOR_TAG}
+              color={importantColorMap}
+              value={important}
+            />
+            <TaskField
+              title="Frequency"
+              type={FIELD_TYPE.ICON_TAG}
+              color={frequencyColorMap}
+              icon={frequencyIconMap}
+              value={frequency}
+            />
+            <TaskField title="Description" type={FIELD_TYPE.STRING} value={description} />
           </div>
         </div>
       )

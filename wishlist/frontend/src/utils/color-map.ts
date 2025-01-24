@@ -1,4 +1,5 @@
 import { COLOR } from '@/enum/color'
+import { ICON } from '@/enum/icon'
 import { EMERGENCY, FREQUENCY, IMPORTANT } from '@/types/tasks/task'
 
 export const emergencyColorMap: Record<EMERGENCY, COLOR> = {
@@ -7,11 +8,16 @@ export const emergencyColorMap: Record<EMERGENCY, COLOR> = {
 }
 
 export const importantColorMap: Record<IMPORTANT, COLOR> = {
-  [IMPORTANT.IMPORTANT]: COLOR.RED,
+  [IMPORTANT.IMPORTANT]: COLOR.CINNABAR,
   [IMPORTANT.NOT_IMPORTANT]: COLOR.CURIOUS_BLUE
 }
 
 export const frequencyColorMap: Record<FREQUENCY, COLOR> = {
   [FREQUENCY.DAILY]: COLOR.GRAY,
   [FREQUENCY.WEEKLY]: COLOR.GRAY
+}
+
+export const frequencyIconMap: Record<FREQUENCY, ICON> = {
+  [FREQUENCY.DAILY]: ICON.CLOCK,
+  [FREQUENCY.WEEKLY]: ICON.CLOCK
 }
