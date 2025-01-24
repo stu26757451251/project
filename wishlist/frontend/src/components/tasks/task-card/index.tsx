@@ -1,16 +1,18 @@
 'use client'
 import { currentTaskAtom } from '@/atoms/atoms'
-import { Task } from '@/types/tasks/task'
-import dayjs from 'dayjs'
+import ColorTag from '@/components/tag/color-tag'
+import IconTag from '@/components/tag/icon-tag'
+import { COLOR } from '@/enum/color'
+import { ICON } from '@/enum/icon'
+import { EMERGENCY, IMPORTANT, Task } from '@/types/tasks/task'
+import { emergencyColorMap, importantColorMap } from '@/utils/color-map'
+import { formatDate } from '@/utils/date'
 import { useSetAtom } from 'jotai'
-import { FaClock } from 'react-icons/fa6'
 
 type TaskCardProps = {
   dataTestId: string
   task: Task
 }
-
-export const formatDate = (date: Date): string => dayjs(date).format('YYYY/MM/DD')
 
 export default function TaskCard({ task, dataTestId }: TaskCardProps) {
   const setCurrentTask = useSetAtom(currentTaskAtom)
@@ -29,22 +31,13 @@ export default function TaskCard({ task, dataTestId }: TaskCardProps) {
       {priority && <span className="block font-light text-sm">Priority: {priority}</span>}
       {hasTags(task) && (
         <div className="flex">
-          {emergency && (
-            <span className="rounded p-[5px] text-xs mr-2 bg-green-200 text-green-900">
-              {emergency}
-            </span>
+          {emergency === EMERGENCY.EMERGENCY && (
+            <ColorTag color={emergencyColorMap[emergency]} text={emergency} />
           )}
-          {important && (
-            <span className="rounded p-[5px] text-xs mr-2 bg-red-200 text-red-900">
-              {important}
-            </span>
+          {important === IMPORTANT.IMPORTANT && (
+            <ColorTag color={importantColorMap[important]} text={important} />
           )}
-          {frequency && (
-            <span className="inline-flex items-center rounded p-[5px] text-xs mr-2 bg-slate-200 text-slate-900">
-              <FaClock size="14" className="mr-1 flex-shrink-0" />
-              {frequency}
-            </span>
-          )}
+          {frequency && <IconTag icon={ICON.CLOCK} color={COLOR.SLATE} text={frequency} />}
         </div>
       )}
     </button>

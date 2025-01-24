@@ -5,8 +5,8 @@ import { ICON } from '@/enum/icon'
 import { pipe } from 'fp-ts/lib/function'
 import { useAtom } from 'jotai'
 import * as O from 'fp-ts/Option'
-import TaskLabel from '../task-label'
-import { formatDate } from '../task-card'
+import TaskLabel, { FIELD_TYPE } from '../task-label'
+import { emergencyColorMap, importantColorMap } from '@/utils/color-map'
 
 export function TaskPanel() {
   const [currentTask, setCurrentTask] = useAtom(currentTaskAtom)
@@ -30,12 +30,26 @@ export function TaskPanel() {
             data-testid="task-content"
             className="grid content-start col-start-2 col-span-5 mt-20 gap-y-2">
             <div className="font-bold text-3xl pb-4">{name}</div>
-            <TaskLabel title="Priority" value={priority ? `${priority}` : undefined} />
-            <TaskLabel title="Due Date" value={dueDate && formatDate(dueDate)} />
-            <TaskLabel title="Emergency" value={emergency} />
-            <TaskLabel title="Important" value={important} />
-            <TaskLabel title="Frequency" value={frequency} />
-            <TaskLabel title="Description" value={description} />
+            {priority && <TaskLabel title="Priority" type={FIELD_TYPE.NUMBER} value={priority} />}
+            {dueDate && <TaskLabel title="Due Date" type={FIELD_TYPE.DATE} value={dueDate} />}
+            {emergency && (
+              <TaskLabel
+                title="Emergency"
+                type={FIELD_TYPE.COLOR_TAG}
+                color={emergencyColorMap[emergency]}
+                value={emergency}
+              />
+            )}
+            {important && (
+              <TaskLabel
+                title="Important"
+                type={FIELD_TYPE.COLOR_TAG}
+                color={importantColorMap[important]}
+                value={important}
+              />
+            )}
+            {/* {frequency && <TaskLabel title="Frequency" type={} value={frequency} />} */}
+            <TaskLabel title="Description" type={FIELD_TYPE.STRING} value={description} />
           </div>
         </div>
       )
