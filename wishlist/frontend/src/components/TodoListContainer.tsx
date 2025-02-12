@@ -1,21 +1,18 @@
 'use client'
 import { ReactNode, MouseEvent } from 'react'
 import { TaskPanel } from './tasks/task-panel'
-import { currentTaskAtom, isResizingAtom, leftPanelVisibleAtom, panelWidth } from '@/atoms/atoms'
+import { currentTaskAtom, isResizingAtom, panelWidth } from '@/atoms/atoms'
 import { useAtom, useAtomValue } from 'jotai'
 import * as TSP from 'ts-pattern'
 
 export default function TodoListContainer({ children }: { children: ReactNode }) {
   const currentTask = useAtomValue(currentTaskAtom)
-  const leftPanelVisible = useAtomValue(leftPanelVisibleAtom)
   const [width, setWidth] = useAtom(panelWidth)
   const [isResizing, setIsResizing] = useAtom(isResizingAtom)
 
-  const contentWidth = TSP.match([leftPanelVisible, currentTask])
-    .with([false, TSP.Pattern.nullish], () => 'calc(100%)')
-    .with([false, TSP.Pattern.nonNullable], () => `calc(100% - ${width}px)`)
-    .with([true, TSP.Pattern.nullish], () => 'calc(100%)')
-    .with([true, TSP.Pattern.nonNullable], () => `calc(100% - ${width}px)`)
+  const contentWidth = TSP.match([currentTask])
+    .with(TSP.Pattern.nullish, () => 'calc(100%)')
+    .with(TSP.Pattern.nonNullable, () => `calc(100% - ${width}px)`)
     .exhaustive()
 
   const handleMouseMove = (e: MouseEvent) => {
