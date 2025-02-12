@@ -72,16 +72,19 @@ export function TaskPanel() {
   return (
     <div
       data-testid="task-panel"
-      className={`grid grid-cols-7 bg-white absolute min-w-[500px] h-full shadow-sm border-l right-[-500px]
-        ${currentTask ? `translate-x-[-500px]` : ''}
-        ${isResizing ? '' : 'transition-all duration-300'}
-        `}
-      style={{ width: `${width}px` }}>
-      <div
-        data-testid="resizer"
-        onMouseDown={handleMouseDown}
-        className="resizer w-[12px] ml-[-6px] absolute top-0 left-0 h-full cursor-ew-resize"></div>
-      {currentTask && renderTaskFields(currentTask)}
+      className={`grid grid-cols-7 bg-white shadow-sm border-l fixed h-full
+        ${currentTask ? 'translate-x-[-500px] w-[500px] min-w-[500px]' : ''}
+        ${isResizing ? '' : 'task-panel-transition'}
+        `}>
+      {currentTask && (
+        <>
+          <div
+            data-testid="resizer"
+            onMouseDown={handleMouseDown}
+            className="resizer w-[12px] ml-[-6px] absolute top-0 left-0 h-full cursor-ew-resize"></div>
+          {renderTaskFields(currentTask)}
+        </>
+      )}
     </div>
   )
 }

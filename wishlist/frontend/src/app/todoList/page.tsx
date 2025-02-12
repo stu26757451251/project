@@ -5,6 +5,7 @@ import * as TE from 'fp-ts/TaskEither'
 import { STATUS } from '@/types/tasks/task'
 import CategoryColumn from '@/components/tasks/category-column'
 import { COLOR } from '@/enum/color'
+import TodoListContainer from '@/components/TodoListContainer'
 
 /*
   1. 
@@ -57,31 +58,33 @@ export default async function TodoList() {
   const tasksGroupByStatus = groupByEnum(todoList, STATUS, 'status')
 
   return (
-    <div className="h-full flex">
-      <CategoryColumn
-        title={STATUS.TODO}
-        color={COLOR.CURIOUS_BLUE}
-        tasks={tasksGroupByStatus[STATUS.TODO]}
-        totalNumber={totalNumber}
-      />
-      <CategoryColumn
-        title={STATUS.IN_PROGRESS}
-        color={COLOR.OASIS}
-        tasks={tasksGroupByStatus[STATUS.IN_PROGRESS]}
-        totalNumber={totalNumber}
-      />
-      <CategoryColumn
-        title={STATUS.WAITING}
-        color={COLOR.GRAY}
-        tasks={tasksGroupByStatus[STATUS.WAITING]}
-        totalNumber={totalNumber}
-      />
-      <CategoryColumn
-        title={STATUS.DONE}
-        color={COLOR.GREEN}
-        tasks={tasksGroupByStatus[STATUS.DONE]}
-        totalNumber={totalNumber}
-      />
-    </div>
+    <TodoListContainer>
+      <div className="h-full flex">
+        <CategoryColumn
+          title={STATUS.TODO}
+          color={COLOR.CURIOUS_BLUE}
+          tasks={tasksGroupByStatus[STATUS.TODO]}
+          totalNumber={totalNumber}
+        />
+        <CategoryColumn
+          title={STATUS.IN_PROGRESS}
+          color={COLOR.OASIS}
+          tasks={tasksGroupByStatus[STATUS.IN_PROGRESS]}
+          totalNumber={totalNumber}
+        />
+        <CategoryColumn
+          title={STATUS.WAITING}
+          color={COLOR.GRAY}
+          tasks={tasksGroupByStatus[STATUS.WAITING]}
+          totalNumber={totalNumber}
+        />
+        <CategoryColumn
+          title={STATUS.DONE}
+          color={COLOR.GREEN}
+          tasks={tasksGroupByStatus[STATUS.DONE]}
+          totalNumber={totalNumber}
+        />
+      </div>
+    </TodoListContainer>
   )
 }

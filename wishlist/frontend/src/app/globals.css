@@ -3,9 +3,7 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --header-height: 60px;
 }
 
 body {
@@ -22,4 +20,9 @@ div {
   height: 12px;
   width: 12px;
   margin-right: 8px;
+}
+
+.task-panel-transition {
+  transition-property: width, transform;
+  transition-duration: 300ms;
 }
