@@ -10,9 +10,9 @@ export default function TodoListContainer({ children }: { children: ReactNode })
   const [width, setWidth] = useAtom(panelWidth)
   const [isResizing, setIsResizing] = useAtom(isResizingAtom)
 
-  const contentWidth = TSP.match([currentTask])
-    .with(TSP.Pattern.nullish, () => 'calc(100%)')
-    .with(TSP.Pattern.nonNullable, () => `calc(100% - ${width}px)`)
+  const contentWidth = TSP.match(currentTask)
+    .with(TSP.P.nullish, () => 'calc(100%)')
+    .with(TSP.P.nonNullable, () => `calc(100% - ${width}px)`)
     .exhaustive()
 
   const handleMouseMove = (e: MouseEvent) => {
@@ -36,7 +36,7 @@ export default function TodoListContainer({ children }: { children: ReactNode })
       className="h-full flex"
       onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUp}>
-      <div style={{ width: contentWidth }}>
+      <div style={{ width: contentWidth }} className="task-panel-transition">
         <div className={`overflow-x-auto h-full`}>{children}</div>
       </div>
       <TaskPanel />
