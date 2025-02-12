@@ -23,7 +23,7 @@ export default function TaskCard({ task, dataTestId }: TaskCardProps) {
 
   return (
     <button
-      className="grid text-left border rounded-xl px-4 gap-y-2 py-3 my-2 shadow-sm hover:bg-slate-100 duration-200"
+      className="grid text-left border border-gray-200 rounded-xl px-4 gap-y-2 py-3 my-2 shadow-sm hover:bg-slate-100 duration-200"
       onClick={() => setCurrentTask(task)}
       data-testid={dataTestId}>
       <span className="block font-bold text-base">{name}</span>

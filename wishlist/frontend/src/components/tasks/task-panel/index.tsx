@@ -76,7 +76,7 @@ export function TaskPanel() {
         width: currentTask ? `${width}px` : `0px`,
         minWidth: currentTask ? `500px` : `0px`
       }}
-      className={`grid grid-cols-7 bg-white shadow-sm border-l absolute top-0 right-0 h-full
+      className={`grid grid-cols-7 bg-white shadow-xl border-l border-gray-200 absolute top-0 right-0 h-full
         ${isResizing ? '' : 'task-panel-transition'}
         `}>
       {currentTask && (
