@@ -72,8 +72,11 @@ export function TaskPanel() {
   return (
     <div
       data-testid="task-panel"
-      className={`grid grid-cols-7 bg-white shadow-sm border-l fixed h-full
-        ${currentTask ? 'translate-x-[-500px] w-[500px] min-w-[500px]' : ''}
+      style={{
+        width: currentTask ? `${width}px` : `0px`,
+        minWidth: currentTask ? `500px` : `0px`
+      }}
+      className={`grid grid-cols-7 bg-white shadow-sm border-l absolute top-0 right-0 h-full
         ${isResizing ? '' : 'task-panel-transition'}
         `}>
       {currentTask && (

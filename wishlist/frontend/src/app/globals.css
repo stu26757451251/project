@@ -23,6 +23,6 @@ div {
 }
 
 .task-panel-transition {
-  transition-property: width, transform;
+  transition-property: width, min-width, transform;
   transition-duration: 300ms;
 }

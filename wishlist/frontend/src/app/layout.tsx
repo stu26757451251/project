@@ -24,7 +24,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body className="h-screen min-w-[400px] overflow-y-hidden">
         {/* The height of header-bar is 60px, thus the container should -60px */}
         <HeaderBar></HeaderBar>
-        <div id="content" className="h-[calc(100%-60px)]">
+        <div className="h-[calc(100%-60px)]">
           <Content>{children}</Content>
         </div>
       </body>
