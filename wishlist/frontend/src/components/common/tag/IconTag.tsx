@@ -52,7 +52,7 @@ export default function IconTag({ icon, color, text }: IconTagProps) {
   return (
     <span
       className={`inline-flex items-center rounded p-[5px] text-xs mr-2 ${backgroundColor} ${textColor}`}>
-      <Icon classname="mr-1 flex-shrink-0" icon={icon} />
+      <Icon className="mr-1 flex-shrink-0" icon={icon} />
       {text}
     </span>
   )

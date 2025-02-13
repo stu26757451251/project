@@ -18,7 +18,7 @@ export default function Button({
 }: Readonly<ButtonProps>) {
   return (
     <button key={dataTestId} className={className} onClick={onClick}>
-      {icon && <Icon classname={'w-8 h-8'} icon={ICON.ARROW_RIGHT} />}
+      {icon && <Icon className={'w-8 h-8'} icon={ICON.ARROW_RIGHT} />}
       {name && name}
     </button>
   )

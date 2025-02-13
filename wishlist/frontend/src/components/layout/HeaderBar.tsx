@@ -22,6 +22,7 @@ export default async function HeaderBar() {
       <div data-testid="header-bar-user" className="pr-7 text-xl">
         <span className="pr-4">Lilypop</span>
         <Image
+          priority
           className="inline rounded-full w-10 h-10"
           src={`/selfie.jpg`}
           alt={'/avatar/bear.png'}
