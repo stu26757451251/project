@@ -36,7 +36,10 @@ export default function TodoListContainer({ children }: { children: ReactNode })
       className="h-full flex"
       onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUp}>
-      <div style={{ width: contentWidth }} className="task-panel-transition">
+      <div
+        data-testid="task-panel-container"
+        style={{ width: contentWidth }}
+        className="task-panel-transition">
         <div className={`overflow-x-auto h-full`}>{children}</div>
       </div>
       <TaskPanel />

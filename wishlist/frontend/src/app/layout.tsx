@@ -20,8 +20,8 @@ const poppins = Poppins({ subsets: ['latin'], weight: '400' })
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className={poppins.className} suppressHydrationWarning>
-      <body className="h-screen min-w-[400px] overflow-y-hidden">
+    <html lang="en" className={poppins.className}>
+      <body className="h-screen min-w-[400px] overflow-y-hidden" suppressHydrationWarning>
         <HeaderBar />
         <div className="h-[calc(100%-var(--header-height))]">
           <LeftPanelContainer>{children}</LeftPanelContainer>

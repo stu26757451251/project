@@ -10,8 +10,8 @@ export default function LeftPanel() {
   return (
     <div
       data-testid="left-panel"
-      className={`grid absolute w-[200px] h-full bg-slate-200 duration-500 ease-out transition-all
-         ${!panelVisible && '-translate-x-[150px]'}`}>
+      className={`grid absolute w-[200px] h-full bg-slate-200 left-panel-transition
+         ${panelVisible ? '' : '-translate-x-[150px]'}`}>
       <Button
         dataTestId="collapse-left-panel-button"
         className={`justify-self-end place-self-end duration-500 m-2 ${panelVisible && 'rotate-180'}`}

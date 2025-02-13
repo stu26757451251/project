@@ -24,6 +24,18 @@
   @apply w-[calc(100%-var(--left-panel-collapsed-width))];
 }
 
+.left-panel-transition {
+  transition-duration: 300ms;
+  transition-timing-function: ease;
+  transition-property: all;
+}
+
+.left-panel-container-transition {
+  transition-duration: 300ms;
+  transition-timing-function: ease;
+  transition-property: all;
+}
+
 body {
   @apply text-slate-600;
 }
