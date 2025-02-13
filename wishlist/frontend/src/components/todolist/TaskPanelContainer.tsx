@@ -1,6 +1,6 @@
 'use client'
 import { ReactNode, MouseEvent } from 'react'
-import { TaskPanel } from './tasks/task-panel'
+import { TaskPanel } from '@/components/todolist/TaskPanel'
 import { currentTaskAtom, isResizingAtom, panelWidth } from '@/atoms/atoms'
 import { useAtom, useAtomValue } from 'jotai'
 import * as TSP from 'ts-pattern'

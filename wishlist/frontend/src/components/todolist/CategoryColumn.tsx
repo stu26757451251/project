@@ -1,6 +1,6 @@
-import DotTag from '@/components/tag/dot-tag'
+import DotTag from '@/components/common/tag/DotTag'
+import TaskCard from '@/components/todolist/TaskCard'
 import { Task } from '@/types/tasks/task'
-import TaskCard from '../task-card'
 import { COLOR } from '@/enum/color'
 
 type CategoryColumnProps = {

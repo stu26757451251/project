@@ -1,7 +1,7 @@
 import { ICON } from '@/enum/icon'
-import Button from '@/components/button'
 import { useAtom } from 'jotai'
 import { leftPanelVisibleAtom } from '@/atoms/atoms'
+import Button from '@/components/common/Button'
 
 export default function LeftPanel() {
   const [panelVisible, setPanelVisible] = useAtom(leftPanelVisibleAtom)

@@ -1,4 +1,4 @@
-import Icon from '@/components/icon'
+import Icon from '@/components/common/Icon'
 import { ICON } from '@/enum/icon'
 
 interface ButtonProps {

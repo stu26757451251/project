@@ -1,9 +1,9 @@
 'use client'
 import { currentTaskAtom, isResizingAtom, panelWidth } from '@/atoms/atoms'
-import Button from '@/components/button'
+import Button from '@/components/common/Button'
 import { ICON } from '@/enum/icon'
-import { useAtom, useAtomValue, useSetAtom } from 'jotai'
-import TaskField, { FIELD_TYPE } from '../task-field'
+import { useAtom } from 'jotai'
+import TaskField, { FIELD_TYPE } from './TaskField'
 import {
   emergencyColorMap,
   frequencyColorMap,

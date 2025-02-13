@@ -9,8 +9,19 @@
   }
 }
 
-:root {
+@theme {
   --header-height: 60px;
+  --left-panel-collapsed-width: 50px;
+  --left-panel-expanded-width: 200px;
+  --left-panel-expanded-translate-x: 150px;
+}
+
+.left-panel-expanded {
+  @apply translate-x-[var(--left-panel-expanded-translate-x)] w-[calc(100%-var(--left-panel-expanded-width))];
+}
+
+.left-panel-collapsed {
+  @apply w-[calc(100%-var(--left-panel-collapsed-width))];
 }
 
 body {

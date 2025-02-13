@@ -1,5 +1,5 @@
-import ColorTag from '@/components/tag/color-tag'
-import IconTag from '@/components/tag/icon-tag'
+import ColorTag from '@/components/common/tag/ColorTag'
+import IconTag from '@/components/common/tag/IconTag'
 import { COLOR } from '@/enum/color'
 import { ICON } from '@/enum/icon'
 import { formatDate } from '@/utils/date'

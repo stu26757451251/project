@@ -1,11 +1,11 @@
 import React from 'react'
 import { pipe } from 'fp-ts/function'
-import { getTasks } from '@/services/task'
 import * as TE from 'fp-ts/TaskEither'
+import { getTasks } from '@/services/task'
 import { STATUS } from '@/types/tasks/task'
-import CategoryColumn from '@/components/tasks/category-column'
 import { COLOR } from '@/enum/color'
-import TodoListContainer from '@/components/TodoListContainer'
+import TodoListContainer from '@/components/todolist/TaskPanelContainer'
+import CategoryColumn from '@/components/todolist/CategoryColumn'
 
 /*
   1. 

@@ -8,7 +8,7 @@ type GetTasksResponse = {
 }
 
 export const getTasks: TE.TaskEither<GetTaskError, GetTasksResponse> = TE.tryCatch(
-  // validate the response matching
+  // TODO: validate the response matching
   () => axios.get<GetTasksResponse>(`/tasks`).then((response) => response.data),
   (error) => handleAxiosError<GetTaskError>(GetTaskErrorSchema)(error as AxiosError)
 )
