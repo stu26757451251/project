@@ -16,26 +16,6 @@
   --left-panel-expanded-translate-x: 150px;
 }
 
-.left-panel-expanded {
-  @apply translate-x-[var(--left-panel-expanded-translate-x)] w-[calc(100%-var(--left-panel-expanded-width))];
-}
-
-.left-panel-collapsed {
-  @apply w-[calc(100%-var(--left-panel-collapsed-width))];
-}
-
-.left-panel-transition {
-  transition-duration: 300ms;
-  transition-timing-function: ease;
-  transition-property: all;
-}
-
-.left-panel-container-transition {
-  transition-duration: 300ms;
-  transition-timing-function: ease;
-  transition-property: all;
-}
-
 body {
   @apply text-slate-600;
 }
@@ -52,7 +32,22 @@ div {
   margin-right: 8px;
 }
 
-.task-panel-transition {
-  transition-property: width, min-width;
+.left-panel-expanded {
+  @apply w-[calc(100%-var(--left-panel-expanded-width))] translate-x-[var(--left-panel-expanded-translate-x)];
+}
+
+.left-panel-collapsed {
+  @apply w-[calc(100%-var(--left-panel-collapsed-width))];
+}
+
+.left-panel-transition {
   transition-duration: 200ms;
+  transition-timing-function: ease;
+  transition-property: translate, width;
+}
+
+.task-panel-transition {
+  transition-duration: 200ms;
+  transition-timing-function: ease;
+  transition-property: translate, width;
 }

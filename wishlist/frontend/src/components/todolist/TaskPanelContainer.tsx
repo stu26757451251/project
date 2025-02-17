@@ -1,12 +1,13 @@
 'use client'
 import { ReactNode, MouseEvent } from 'react'
 import { TaskPanel } from '@/components/todolist/TaskPanel'
-import { currentTaskAtom, isResizingAtom, panelWidth } from '@/atoms/atoms'
+import { currentTaskAtom, isResizingAtom, leftPanelVisibleAtom, panelWidth } from '@/atoms/atoms'
 import { useAtom, useAtomValue } from 'jotai'
 import * as TSP from 'ts-pattern'
 
 export default function TodoListContainer({ children }: { children: ReactNode }) {
   const currentTask = useAtomValue(currentTaskAtom)
+  const leftPanelVisible = useAtomValue(leftPanelVisibleAtom)
   const [width, setWidth] = useAtom(panelWidth)
   const [isResizing, setIsResizing] = useAtom(isResizingAtom)
 
@@ -37,10 +38,10 @@ export default function TodoListContainer({ children }: { children: ReactNode })
       onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUp}>
       <div
-        data-testid="task-panel-container"
+        data-testid="task-board"
         style={{ width: contentWidth }}
-        className="task-panel-transition">
-        <div className={`overflow-x-auto h-full`}>{children}</div>
+        className="overflow-x-auto h-full">
+        {children}
       </div>
       <TaskPanel />
     </div>

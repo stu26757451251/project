@@ -14,7 +14,7 @@ export default function LeftPanelContainer({ children }: { children: ReactNode }
       <div
         data-testid="content"
         className={clsx(
-          'absolute left-[50px] shrink h-full left-panel-container-transition',
+          'absolute left-[50px] shrink h-full left-panel-transition',
           leftPanelVisible ? 'left-panel-expanded' : 'left-panel-collapsed'
         )}>
         {children}

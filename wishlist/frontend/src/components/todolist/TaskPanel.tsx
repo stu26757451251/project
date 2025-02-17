@@ -11,6 +11,7 @@ import {
   importantColorMap
 } from '@/utils/color-map'
 import { Task } from '@/types/tasks/task'
+import { CSSProperties } from 'react'
 
 export function TaskPanel() {
   const [currentTask, setCurrentTask] = useAtom(currentTaskAtom)
@@ -73,12 +74,14 @@ export function TaskPanel() {
   return (
     <div
       data-testid="task-panel"
-      style={{
-        width: currentTask ? `${width}px` : `0px`,
-        minWidth: currentTask ? `500px` : `0px`
-      }}
-      className={`grid grid-cols-7 bg-white shadow-xl border-l border-gray-200 absolute top-0 right-0 h-full
-        ${isResizing ? '' : 'task-panel-transition'}
+      style={
+        {
+          '--tw-translate-x': `${width}px`,
+          translate: currentTask ? '' : `var(--tw-translate-x)`,
+          width: `${width}px`
+        } as CSSProperties
+      }
+      className={`grid grid-cols-7 bg-white shadow-xl border-l border-gray-200 absolute top-0 right-0 h-full task-panel-transition
         `}>
       {currentTask && (
         <>
