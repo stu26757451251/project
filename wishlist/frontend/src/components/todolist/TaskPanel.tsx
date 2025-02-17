@@ -35,7 +35,8 @@ export function TaskPanel() {
           dataTestId="collapse-task-panel-button"
           className={`justify-self-start place-self-start m-2 col-start-1`}
           onClick={() => closeTaskPanel()}
-          icon={ICON.ARROW_RIGHT}></Button>
+          icon={ICON.ARROW_RIGHT}
+          iconSize={32}></Button>
         <div
           data-testid="task-content"
           className="grid content-start col-start-2 col-span-5 mt-20 gap-y-3">

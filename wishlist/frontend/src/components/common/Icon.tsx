@@ -1,8 +1,6 @@
-'use client'
 import { ICON } from '@/enum/icon'
-import Image from 'next/image'
-import { FaClock } from 'react-icons/fa6'
 import * as TSP from 'ts-pattern'
+import { ChevronsRight, Clock } from 'lucide-react'
 
 interface IconProps {
   className?: string
@@ -10,13 +8,11 @@ interface IconProps {
   size?: number
 }
 
-export default function Icon({ className, icon, size = 32 }: IconProps) {
+export default function Icon({ className, icon, size = 14 }: IconProps) {
   return TSP.match(icon)
-    .with(ICON.ARROW_RIGHT, () => (
-      <div className={className}>
-        <Image src={`/icon/${icon}.svg`} alt={icon} width={size} height={size} />
-      </div>
-    ))
-    .with(ICON.CLOCK, () => <FaClock size="14" className="mr-1 flex-shrink-0" />)
+    .with(ICON.ARROW_RIGHT, () => <ChevronsRight className={className} size={size} />)
+    .with(ICON.CLOCK, () => {
+      return <Clock className={className} size={size} />
+    })
     .exhaustive()
 }

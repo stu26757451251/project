@@ -1,6 +1,5 @@
 import { COLOR } from '@/enum/color'
 import { ICON } from '@/enum/icon'
-import { FaClock } from 'react-icons/fa6'
 import * as TSP from 'ts-pattern'
 import Icon from '../Icon'
 

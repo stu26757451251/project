@@ -16,7 +16,8 @@ export default function LeftPanel() {
         dataTestId="collapse-left-panel-button"
         className={`justify-self-end place-self-end duration-500 m-2 ${panelVisible && 'rotate-180'}`}
         onClick={switchPanelVisible}
-        icon={ICON.ARROW_RIGHT}></Button>
+        icon={ICON.ARROW_RIGHT}
+        iconSize={32}></Button>
     </div>
   )
 }
