@@ -55,7 +55,6 @@ type TaskFieldProps<E extends string> =
   | IconTagField<E>
 
 export default function TaskField<E extends string>(props: TaskFieldProps<E>) {
-  const [input, setInput] = useState<string>('')
   const placeholder = 'Empty'
 
   const emptyField = TSP.match(props.type)

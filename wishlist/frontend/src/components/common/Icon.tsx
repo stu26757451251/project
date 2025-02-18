@@ -11,8 +11,6 @@ interface IconProps {
 export default function Icon({ className, icon, size = 14 }: IconProps) {
   return TSP.match(icon)
     .with(ICON.ARROW_RIGHT, () => <ChevronsRight className={className} size={size} />)
-    .with(ICON.CLOCK, () => {
-      return <Clock className={className} size={size} />
-    })
+    .with(ICON.CLOCK, () => <Clock className={className} size={size} />)
     .exhaustive()
 }

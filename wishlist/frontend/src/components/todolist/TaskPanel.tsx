@@ -1,8 +1,8 @@
 'use client'
-import { currentTaskAtom, isResizingAtom, panelWidth } from '@/atoms/atoms'
+import { currentTaskAtom, isResizingAtom, taskPanelWidthAtom } from '@/atoms/atoms'
 import Button from '@/components/common/Button'
 import { ICON } from '@/enum/icon'
-import { useAtom } from 'jotai'
+import { useAtom, useAtomValue } from 'jotai'
 import TaskField, { FIELD_TYPE } from './TaskField'
 import {
   emergencyColorMap,
@@ -11,21 +11,15 @@ import {
   importantColorMap
 } from '@/utils/color-map'
 import { Task } from '@/types/tasks/task'
-import { CSSProperties } from 'react'
+import clsx from 'clsx'
 
 export function TaskPanel() {
   const [currentTask, setCurrentTask] = useAtom(currentTaskAtom)
   const [isResizing, setIsResizing] = useAtom(isResizingAtom)
-  const [width, setWidth] = useAtom(panelWidth)
+  const width = useAtomValue(taskPanelWidthAtom)
 
-  const closeTaskPanel = () => {
-    setCurrentTask(null)
-    setWidth(500)
-  }
-
-  const handleMouseDown = () => {
-    setIsResizing(true)
-  }
+  const closeTaskPanel = () => setCurrentTask(null)
+  const handleMouseDown = () => setIsResizing(true)
 
   const renderTaskFields = (task: Task) => {
     const { name, description, dueDate, priority, frequency, emergency, important } = task
@@ -74,15 +68,14 @@ export function TaskPanel() {
   return (
     <div
       data-testid="task-panel"
-      style={
-        {
-          '--tw-translate-x': `${width}px`,
-          translate: currentTask ? '' : `var(--tw-translate-x)`,
-          width: `${width}px`
-        } as CSSProperties
-      }
-      className={`grid grid-cols-7 bg-white shadow-xl border-l border-gray-200 absolute top-0 right-0 h-full task-panel-transition
-        `}>
+      style={{
+        translate: currentTask ? '' : `${width}px`,
+        width: `${width}px`
+      }}
+      className={clsx(
+        'grid grid-cols-7 bg-white shadow-xl border-l border-gray-200 absolute top-0 right-0 h-full',
+        isResizing ? '' : 'task-panel-transition'
+      )}>
       {currentTask && (
         <>
           <div

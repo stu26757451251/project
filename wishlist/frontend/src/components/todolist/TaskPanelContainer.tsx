@@ -1,14 +1,18 @@
 'use client'
 import { ReactNode, MouseEvent } from 'react'
 import { TaskPanel } from '@/components/todolist/TaskPanel'
-import { currentTaskAtom, isResizingAtom, leftPanelVisibleAtom, panelWidth } from '@/atoms/atoms'
+import {
+  TASK_PANEL_MIN_WIDTH,
+  currentTaskAtom,
+  isResizingAtom,
+  taskPanelWidthAtom
+} from '@/atoms/atoms'
 import { useAtom, useAtomValue } from 'jotai'
 import * as TSP from 'ts-pattern'
 
-export default function TodoListContainer({ children }: { children: ReactNode }) {
+export default function TaskPanelContainer({ children }: { children: ReactNode }) {
   const currentTask = useAtomValue(currentTaskAtom)
-  const leftPanelVisible = useAtomValue(leftPanelVisibleAtom)
-  const [width, setWidth] = useAtom(panelWidth)
+  const [width, setWidth] = useAtom(taskPanelWidthAtom)
   const [isResizing, setIsResizing] = useAtom(isResizingAtom)
 
   const contentWidth = TSP.match(currentTask)
@@ -20,7 +24,8 @@ export default function TodoListContainer({ children }: { children: ReactNode })
     if (!isResizing) return
 
     const newWidth = window.innerWidth - e.clientX
-    if (newWidth > 500 && newWidth < 1000) {
+    const maxWidth = window.innerWidth * 0.6
+    if (newWidth > TASK_PANEL_MIN_WIDTH && newWidth < maxWidth) {
       setWidth(newWidth)
     }
   }

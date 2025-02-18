@@ -11,6 +11,7 @@
 
 @theme {
   --header-height: 60px;
+  --header-width: 600px;
   --left-panel-collapsed-width: 50px;
   --left-panel-expanded-width: 200px;
   --left-panel-expanded-translate-x: 150px;

@@ -3,11 +3,12 @@ import { connection } from 'next/server'
 
 export default async function HeaderBar() {
   await connection()
-  const color = process.env.A_COLOR
+  const theme = process.env.THEME
+
   return (
     <aside
       data-testid="header-bar"
-      className="h-[var(--header-height)] flex items-center justify-between border-b-2 border-slate-600">
+      className="h-[var(--header-height)] min-w-[600px] flex items-center justify-between border-b-2 border-slate-600">
       <div data-testid="header-bar-title" className="pl-7 text-xl">
         <Image
           className="inline object-center w-8 h-8"
@@ -18,7 +19,7 @@ export default async function HeaderBar() {
         />
         <span className="pl-4">Wishlist</span>
       </div>
-      <div>Process environment : {color}</div>
+      <div>Process environment : {theme}</div>
       <div data-testid="header-bar-user" className="pr-7 text-xl">
         <span className="pr-4">Lilypop</span>
         <Image
