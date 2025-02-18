@@ -15,7 +15,7 @@ export default [
       'react-compiler/react-compiler': 'error',
       'react/react-in-jsx-scope': 'off',
       'no-redeclare': 'off',
-      'no-unused-vars': 'off',
+      'no-unused-vars': 'on',
       'react-compiler/react-compiler': 'error'
     }
   }

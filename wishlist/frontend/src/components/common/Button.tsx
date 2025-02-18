@@ -1,4 +1,4 @@
-import Icon from '@/components/icon'
+import Icon from '@/components/common/Icon'
 import { ICON } from '@/enum/icon'
 
 interface ButtonProps {
@@ -7,6 +7,7 @@ interface ButtonProps {
   onClick: () => void
   name?: string
   icon?: ICON
+  iconSize?: number
 }
 
 export default function Button({
@@ -14,11 +15,12 @@ export default function Button({
   className,
   onClick,
   name,
-  icon
+  icon,
+  iconSize
 }: Readonly<ButtonProps>) {
   return (
     <button key={dataTestId} className={className} onClick={onClick}>
-      {icon && <Icon classname={'w-8 h-8'} icon={ICON.ARROW_RIGHT} />}
+      {icon && <Icon className={'w-8 h-8'} icon={icon} size={iconSize} />}
       {name && name}
     </button>
   )

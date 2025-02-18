@@ -1,8 +1,8 @@
 import { COLOR } from '@/enum/color'
 import { ICON } from '@/enum/icon'
-import { FaClock } from 'react-icons/fa6'
 import * as TSP from 'ts-pattern'
-import Icon from '../icon'
+import Icon from '../Icon'
+import clsx from 'clsx'
 
 type IconTagProps = {
   icon: ICON
@@ -51,8 +51,12 @@ export default function IconTag({ icon, color, text }: IconTagProps) {
   const { backgroundColor, textColor } = colorToStyle(color)
   return (
     <span
-      className={`inline-flex items-center rounded p-[5px] text-xs mr-2 ${backgroundColor} ${textColor}`}>
-      <Icon classname="mr-1 flex-shrink-0" icon={icon} />
+      className={clsx(
+        'inline-flex items-center rounded p-[5px] text-xs mr-2',
+        backgroundColor,
+        textColor
+      )}>
+      <Icon className="mr-1 flex-shrink-0" icon={icon} />
       {text}
     </span>
   )

@@ -1,0 +1,54 @@
+@import 'tailwindcss';
+@import '../styles/colors.css';
+
+/* Set button cursor to be pointer  */
+@layer base {
+  button:not(:disabled),
+  [role='button']:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+@theme {
+  --header-height: 60px;
+  --header-width: 600px;
+  --left-panel-collapsed-width: 50px;
+  --left-panel-expanded-width: 200px;
+  --left-panel-expanded-translate-x: 150px;
+}
+
+body {
+  @apply text-slate-600;
+}
+
+div {
+  @apply select-none;
+}
+
+.dot {
+  align-self: center;
+  border-radius: 9999px;
+  height: 12px;
+  width: 12px;
+  margin-right: 8px;
+}
+
+.left-panel-expanded {
+  @apply w-[calc(100%-var(--left-panel-expanded-width))] translate-x-[var(--left-panel-expanded-translate-x)];
+}
+
+.left-panel-collapsed {
+  @apply w-[calc(100%-var(--left-panel-collapsed-width))];
+}
+
+.left-panel-transition {
+  transition-duration: 200ms;
+  transition-timing-function: ease;
+  transition-property: translate, width;
+}
+
+.task-panel-transition {
+  transition-duration: 200ms;
+  transition-timing-function: ease;
+  transition-property: translate, width;
+}

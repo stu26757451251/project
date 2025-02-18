@@ -1,9 +1,9 @@
 'use client'
-import { currentTaskAtom, isResizingAtom, panelWidth } from '@/atoms/atoms'
-import Button from '@/components/button'
+import { currentTaskAtom, isResizingAtom, taskPanelWidthAtom } from '@/atoms/atoms'
+import Button from '@/components/common/Button'
 import { ICON } from '@/enum/icon'
-import { useAtom, useAtomValue, useSetAtom } from 'jotai'
-import TaskField, { FIELD_TYPE } from '../task-field'
+import { useAtom, useAtomValue } from 'jotai'
+import TaskField, { FIELD_TYPE } from './TaskField'
 import {
   emergencyColorMap,
   frequencyColorMap,
@@ -11,20 +11,15 @@ import {
   importantColorMap
 } from '@/utils/color-map'
 import { Task } from '@/types/tasks/task'
+import clsx from 'clsx'
 
 export function TaskPanel() {
   const [currentTask, setCurrentTask] = useAtom(currentTaskAtom)
   const [isResizing, setIsResizing] = useAtom(isResizingAtom)
-  const [width, setWidth] = useAtom(panelWidth)
+  const width = useAtomValue(taskPanelWidthAtom)
 
-  const closeTaskPanel = () => {
-    setCurrentTask(null)
-    setWidth(500)
-  }
-
-  const handleMouseDown = () => {
-    setIsResizing(true)
-  }
+  const closeTaskPanel = () => setCurrentTask(null)
+  const handleMouseDown = () => setIsResizing(true)
 
   const renderTaskFields = (task: Task) => {
     const { name, description, dueDate, priority, frequency, emergency, important } = task
@@ -35,7 +30,8 @@ export function TaskPanel() {
           dataTestId="collapse-task-panel-button"
           className={`justify-self-start place-self-start m-2 col-start-1`}
           onClick={() => closeTaskPanel()}
-          icon={ICON.ARROW_RIGHT}></Button>
+          icon={ICON.ARROW_RIGHT}
+          iconSize={32}></Button>
         <div
           data-testid="task-content"
           className="grid content-start col-start-2 col-span-5 mt-20 gap-y-3">
@@ -73,12 +69,13 @@ export function TaskPanel() {
     <div
       data-testid="task-panel"
       style={{
-        width: currentTask ? `${width}px` : `0px`,
-        minWidth: currentTask ? `500px` : `0px`
+        translate: currentTask ? '' : `${width}px`,
+        width: `${width}px`
       }}
-      className={`grid grid-cols-7 bg-white shadow-xl border-l border-gray-200 absolute top-0 right-0 h-full
-        ${isResizing ? '' : 'task-panel-transition'}
-        `}>
+      className={clsx(
+        'grid grid-cols-7 bg-white shadow-xl border-l border-gray-200 absolute top-0 right-0 h-full',
+        isResizing ? '' : 'task-panel-transition'
+      )}>
       {currentTask && (
         <>
           <div

@@ -1,4 +1,5 @@
 import { COLOR } from '@/enum/color'
+import clsx from 'clsx'
 import * as TSP from 'ts-pattern'
 
 type DotTagProps = {
@@ -54,8 +55,8 @@ const colorToStyle = (
 export default function DotTag({ color, text }: DotTagProps) {
   const { backgroundColor, dotColor, textColor } = colorToStyle(color)
   return (
-    <div className={`inline-flex rounded-full ${backgroundColor} px-2`}>
-      <span className={`dot ${dotColor}`} />
+    <div className={clsx('inline-flex rounded-full px-2', backgroundColor)}>
+      <span className={clsx('dot', dotColor)} />
       <span className={textColor}>{text}</span>
     </div>
   )

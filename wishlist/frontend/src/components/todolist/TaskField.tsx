@@ -1,5 +1,5 @@
-import ColorTag from '@/components/tag/color-tag'
-import IconTag from '@/components/tag/icon-tag'
+import ColorTag from '@/components/common/tag/ColorTag'
+import IconTag from '@/components/common/tag/IconTag'
 import { COLOR } from '@/enum/color'
 import { ICON } from '@/enum/icon'
 import { formatDate } from '@/utils/date'
@@ -55,7 +55,6 @@ type TaskFieldProps<E extends string> =
   | IconTagField<E>
 
 export default function TaskField<E extends string>(props: TaskFieldProps<E>) {
-  const [input, setInput] = useState<string>('')
   const placeholder = 'Empty'
 
   const emptyField = TSP.match(props.type)

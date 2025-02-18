@@ -1,13 +1,18 @@
 'use client'
 import { ReactNode, MouseEvent } from 'react'
-import { TaskPanel } from './tasks/task-panel'
-import { currentTaskAtom, isResizingAtom, panelWidth } from '@/atoms/atoms'
+import { TaskPanel } from '@/components/todolist/TaskPanel'
+import {
+  TASK_PANEL_MIN_WIDTH,
+  currentTaskAtom,
+  isResizingAtom,
+  taskPanelWidthAtom
+} from '@/atoms/atoms'
 import { useAtom, useAtomValue } from 'jotai'
 import * as TSP from 'ts-pattern'
 
-export default function TodoListContainer({ children }: { children: ReactNode }) {
+export default function TaskPanelContainer({ children }: { children: ReactNode }) {
   const currentTask = useAtomValue(currentTaskAtom)
-  const [width, setWidth] = useAtom(panelWidth)
+  const [width, setWidth] = useAtom(taskPanelWidthAtom)
   const [isResizing, setIsResizing] = useAtom(isResizingAtom)
 
   const contentWidth = TSP.match(currentTask)
@@ -19,7 +24,8 @@ export default function TodoListContainer({ children }: { children: ReactNode })
     if (!isResizing) return
 
     const newWidth = window.innerWidth - e.clientX
-    if (newWidth > 500 && newWidth < 1000) {
+    const maxWidth = window.innerWidth * 0.6
+    if (newWidth > TASK_PANEL_MIN_WIDTH && newWidth < maxWidth) {
       setWidth(newWidth)
     }
   }
@@ -36,8 +42,11 @@ export default function TodoListContainer({ children }: { children: ReactNode })
       className="h-full flex"
       onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUp}>
-      <div style={{ width: contentWidth }} className="task-panel-transition">
-        <div className={`overflow-x-auto h-full`}>{children}</div>
+      <div
+        data-testid="task-board"
+        style={{ width: contentWidth }}
+        className="overflow-x-auto h-full">
+        {children}
       </div>
       <TaskPanel />
     </div>

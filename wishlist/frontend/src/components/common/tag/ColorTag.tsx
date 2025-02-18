@@ -1,4 +1,5 @@
 import { COLOR } from '@/enum/color'
+import clsx from 'clsx'
 import * as TSP from 'ts-pattern'
 
 type ColorTagProps = {
@@ -46,6 +47,6 @@ const colorToStyle = (
 export default function ColorTag({ color, text }: ColorTagProps) {
   const { backgroundColor, textColor } = colorToStyle(color)
   return (
-    <span className={`rounded p-[5px] text-xs mr-2 ${backgroundColor} ${textColor}`}>{text}</span>
+    <span className={clsx('rounded p-[5px] text-xs mr-2', backgroundColor, textColor)}>{text}</span>
   )
 }
